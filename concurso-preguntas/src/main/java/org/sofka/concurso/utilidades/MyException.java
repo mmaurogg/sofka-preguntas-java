@@ -1,4 +1,4 @@
-package com.sofka.taller.utilidades;
+package org.sofka.concurso.utilidades;
 
 /** 
  * Esta clase existe para capturar las excepcions y darles formato

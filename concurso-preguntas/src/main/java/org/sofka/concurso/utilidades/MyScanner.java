@@ -1,4 +1,4 @@
-package com.sofka.taller.utilidades;
+package org.sofka.concurso.utilidades;
 
 import java.util.Scanner;
 
