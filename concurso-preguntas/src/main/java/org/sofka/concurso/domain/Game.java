@@ -1,13 +1,14 @@
 package org.sofka.concurso.domain;
 
+import java.util.ArrayList;
 
 public class Game {
     
     private Player player;
-    private Question[] question;
+    private ArrayList<Question> question;
     private Integer score;
     
-    public Game(Player player, Question[] question) {
+    public Game(Player player, ArrayList<Question> question) {
         this.player = player;
         this.question = question;
     }
@@ -20,11 +21,11 @@ public class Game {
         this.player = player;
     }
 
-    public Question[] getQuestion() {
+    public ArrayList<Question> getQuestion() {
         return question;
     }
 
-    public void setQuestion(Question[] question) {
+    public void setQuestion(ArrayList<Question> question) {
         this.question = question;
     }
 
