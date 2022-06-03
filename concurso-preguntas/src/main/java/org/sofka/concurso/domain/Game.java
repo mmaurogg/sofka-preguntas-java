@@ -41,4 +41,11 @@ public class Game {
         return score;
     } 
 
+    /**
+     * Método para mostrar los datos del juego
+     */
+    public String toString(){
+        return "Juagador: " + this.player + " Puntaje: " + this.score;
+    }
+
 }
