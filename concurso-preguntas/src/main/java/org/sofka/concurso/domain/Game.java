@@ -5,12 +5,13 @@ import java.util.ArrayList;
 public class Game {
     
     private Player player;
-    private ArrayList<Question> question;
+    private ArrayList<Question> questions;
     private Integer score;
     
-    public Game(Player player, ArrayList<Question> question) {
+    public Game(Player player, ArrayList<Question> questions, Integer score) {
         this.player = player;
-        this.question = question;
+        this.questions = questions;
+        this.score = score;
     }
 
     public Player getPlayer() {
@@ -21,12 +22,12 @@ public class Game {
         this.player = player;
     }
 
-    public ArrayList<Question> getQuestion() {
-        return question;
+    public ArrayList<Question> getQuestions() {
+        return questions;
     }
 
-    public void setQuestion(ArrayList<Question> question) {
-        this.question = question;
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
     }
 
     public Integer computeScore(boolean success){

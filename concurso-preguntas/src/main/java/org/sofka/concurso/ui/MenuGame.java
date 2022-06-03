@@ -18,13 +18,12 @@ public class MenuGame {
 
     public static Boolean createGame(){
         
-        Player player = createPlayer();
-
         Boolean flag = true;
+        Integer score = 0;
+        
+        Player player = createPlayer();
         ArrayList<Question> questions = questions();
         
-        Game game = new Game(player, questions);
-
         messages.showMessage("Comencemos");
                 
         for(Question question : questions){
@@ -44,18 +43,37 @@ public class MenuGame {
 
             System.out.println(options);
 
-            int seleccion = scanner.getInteger();
+            int selection = scanner.getInteger();
 
             // Validar respuesta
-            flag = validateResponse(options.get(seleccion - 1), question.getAnswer());
+            flag = validateResponse(options.get(selection - 1), question.getAnswer());
             
             if(!flag){
-                System.out.println("perdió el juego");
+                score = 0;
+                System.out.println("perdió el juego, su puntuación es: " + score);
+                saveGame(player, questions, score);
                 return flag;
             }
 
+            System.out.println("es correcto");
+
+            score++;
+
+            if(score != 5){
+                            System.err.println("su puentiación es: "+score+" ¿Desea reclamar su premio? (y/n)");
+            String reward = scanner.getString();
+            if(reward.equalsIgnoreCase("y")){
+                System.out.println("Ganaste: " + score + " puntos");
+                saveGame(player, questions, score);
+                return flag;
+            }
+            }
+
+
         }
 
+        System.out.println("Ha ganado el premio mayor, su puntuación "+score);
+        saveGame(player, questions, score);
         return flag;
 
     }
@@ -63,13 +81,19 @@ public class MenuGame {
     private static Player createPlayer(){
         messages.showMessage("Ingrese su nombre: ");
         String username = scanner.getString();
-        Player player = new Player(username);
-        return player;
+        
+        return new Player(username);
 
     }
 
-    static Boolean validateResponse(String response, String correctAnswer){
+    private static Boolean validateResponse(String response, String correctAnswer){
         return response.equals(correctAnswer); 
+    }
+
+    private static void saveGame(Player player, ArrayList<Question> questions, Integer score){
+        Game game = new Game(player, questions, score);
+
+        System.out.println(game);
     }
 
     static ArrayList<Question> questions(){
