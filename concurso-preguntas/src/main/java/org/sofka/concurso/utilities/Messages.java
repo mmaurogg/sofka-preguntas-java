@@ -1,4 +1,4 @@
-package org.sofka.concurso.utilidades;
+package org.sofka.concurso.utilities;
 
 import org.jboss.logging.Logger;
 
