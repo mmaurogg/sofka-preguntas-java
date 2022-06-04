@@ -1,0 +1,8 @@
+Juagador: Juagador: 1 Puntaje: null Puntaje: 0
+Juagador: Juagador: 1 Puntaje: null Puntaje: 0
+Juagador: Juagador: ww Puntaje: null Puntaje: 0
+org.sofka.concurso.domain.Game@53bd815b
+Juagador: org.sofka.concurso.domain.Player@53bd815b Puntaje: 5
+Juagador: 1 Puntaje: 5
+Juagador: 1 Puntaje: 0[org.sofka.concurso.domain.Question@53bd815b, org.sofka.concurso.domain.Question@2401f4c3, org.sofka.concurso.domain.Question@7637f22, org.sofka.concurso.domain.Question@4926097b, org.sofka.concurso.domain.Question@762efe5d]
+Juagador: 1 Puntaje: 5[pregunta: pregunta1 Respuesta: respC, pregunta: pregunta2 Respuesta: respC, pregunta: pregunta3 Respuesta: respC, pregunta: pregunta4 Respuesta: respC, pregunta: pregunta5 Respuesta: respC]

@@ -53,5 +53,8 @@ public class Question {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
-    
+
+    public String toString(){
+        return "pregunta: " + this.statement + " Respuesta: " + answer;
+    }
 }

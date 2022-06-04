@@ -22,6 +22,6 @@ public class Player {
     }
 
     public String toString(){
-        return "Juagador: " + this.username + " Puntaje: " + this.score;
+        return "Juagador: " + this.username;
     }
 }

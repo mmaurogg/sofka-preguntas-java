@@ -1,8 +1,8 @@
 package org.sofka.concurso.ui;
 
 import org.sofka.concurso.utilities.Messages;
-import org.sofka.concurso.utilities.MyException;
 import org.sofka.concurso.utilities.MyScanner;
+import org.sofka.concurso.utilities.DataAccess;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class MenuGame {
         Integer score = 0;
         
         Player player = createPlayer();
-        ArrayList<Question> questions = questions();
+        ArrayList<Question> questions = getQuestions();
         
         messages.showMessage("Comencemos");
                 
@@ -93,10 +93,10 @@ public class MenuGame {
     private static void saveGame(Player player, ArrayList<Question> questions, Integer score){
         Game game = new Game(player, questions, score);
 
-        System.out.println(game);
+        DataAccess.agregarGame(game);
     }
 
-    static ArrayList<Question> questions(){
+    static ArrayList<Question> getQuestions(){
 
         String ans[] = {"resp1","resp2","resp3"};
         String anscorrect = "respC";
