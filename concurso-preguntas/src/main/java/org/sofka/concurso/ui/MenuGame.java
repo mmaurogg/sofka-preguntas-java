@@ -7,6 +7,7 @@ import org.sofka.concurso.utilities.DataAccess;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.sofka.concurso.data.QuestionsGame;
 import org.sofka.concurso.domain.Game;
 import org.sofka.concurso.domain.Player;
 import org.sofka.concurso.domain.Question;
@@ -28,6 +29,7 @@ public class MenuGame {
 
         Player player = createPlayer();
         ArrayList<Question> questions = getQuestions();
+        Game game = new Game(player, questions);
 
         messages.showMessage("Comencemos");
 
@@ -48,7 +50,7 @@ public class MenuGame {
 
             for (int i = 0; i < options.size(); i++) {
                 String option = options.get(i);
-                messages.showMessage(i + ". " + option);
+                messages.showMessage((i+1) + ". " + option);
             }
 
             int selection = scanner.getInteger();
@@ -59,7 +61,7 @@ public class MenuGame {
             if (!flag) {
                 score = 0;
                 messages.showMessage("perdió el juego, su puntuación es: " + score);
-                saveGame(player, questions, score);
+                saveGame(player, game, score);
                 return flag;
             }
 
@@ -73,15 +75,14 @@ public class MenuGame {
 
                 if (reward.equalsIgnoreCase("y")) {
                     messages.showMessage("Ganaste: " + score + " puntos");
-                    saveGame(player, questions, score);
+                    saveGame(player, game, score);
                     return flag;
                 }
             }
-
         }
 
         messages.showMessage("Ha ganado el premio mayor, su puntuación " + score);
-        saveGame(player, questions, score);
+        saveGame(player, game, score);
         return flag;
 
     }
@@ -96,31 +97,51 @@ public class MenuGame {
         return response.equals(correctAnswer);
     }
 
-    private void saveGame(Player player, ArrayList<Question> questions, Integer score) {
-        Game game = new Game(player, questions, score);
-
-        dataAccess.setGame(game);
+    private void saveGame( Player player, Game game, Integer score) {
+        player.setScore(score);
+        game.setScore(score);
+        
+        messages.showMessage("Juego guardado correctamente");
+    
     }
 
-    static ArrayList<Question> getQuestions() {
+    private static ArrayList<Question> getQuestions() {
 
-        String ans[] = { "resp1", "resp2", "resp3" };
-        String anscorrect = "respC";
-
-        Question question1 = new Question(1, "pregunta1", ans, anscorrect);
-        Question question2 = new Question(2, "pregunta2", ans, anscorrect);
-        Question question3 = new Question(3, "pregunta3", ans, anscorrect);
-        Question question4 = new Question(4, "pregunta4", ans, anscorrect);
-        Question question5 = new Question(5, "pregunta5", ans, anscorrect);
-
+        final int NUMBER_QUESTION = 5;
         ArrayList<Question> questions = new ArrayList<>();
-        questions.add(question1);
-        questions.add(question2);
-        questions.add(question3);
-        questions.add(question4);
-        questions.add(question5);
-
+        
+        for (int i = 1; i < (NUMBER_QUESTION + 1); i++) {
+            Question question = aleatoryQuestion(filtterArray(QuestionsGame.Questions(), i));
+            questions.add(question);
+        }
+        
         return questions;
-    }
+    };
 
+    /**
+     * Función para seleccionar una pregunta aleatoriamente entre un set de preguntas
+     * @param questions arrPreguntas set de preguntas a elegir
+     * @return pregunta elegida aleatoriamente
+     */
+    private static Question aleatoryQuestion(ArrayList<Question> questions){
+        int aleatoryIndex = (int) Math.floor(Math.random() * questions.size());
+        return questions.get(aleatoryIndex);
+    };
+    
+    /**
+     * Función para filtrar un set de preguntas por su nivel de dificultad
+     * @param arr arreglo de preguntas con diferentes niveles de difucultad o categorías
+     * @param dificultad es el nivel de dificultado o categoria por la que se quieren filtrar las preguntas
+     * @returns arreglo con preguntas del mismo nivel de dificultad o categoría
+     */
+    private static ArrayList<Question> filtterArray ( ArrayList<Question> questions, int difficulty) {
+        ArrayList<Question> arrayQuestions = new ArrayList<>();
+    
+        for (Question question : questions) {
+            if (difficulty == question.getDifficulty()) {
+                arrayQuestions.add(question);
+            }
+        }
+        return arrayQuestions;
+    }
 }

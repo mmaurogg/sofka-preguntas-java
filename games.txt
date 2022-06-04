@@ -3,3 +3,8 @@ Juagador: 1 Puntaje: 0
 Juagador: dddd Puntaje: 0
 Juagador: 1 Puntaje: 0
 Juagador: 1 Puntaje: 5
+Juagador: Mao Puntaje: 1
+Juagador: Gabriel Puntaje: 5
+Juagador: aaaa Puntaje: 1
+Juagador: sssss Puntaje: 0
+Juagador: s Puntaje: 1

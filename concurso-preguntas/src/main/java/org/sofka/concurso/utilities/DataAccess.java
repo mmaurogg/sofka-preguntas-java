@@ -21,7 +21,7 @@ public class DataAccess {
     static String NAME_FILE = "games.txt";
 
     public void setGame(Game game) {
-        boolean add = false;
+        Boolean add = false;
         try {
             add = inPlace(NAME_FILE);
             write(game, NAME_FILE, add);
@@ -40,9 +40,7 @@ public class DataAccess {
         } catch (Exception ex) {
             messages.showMessage("Error de acceso a datos");
         }
-
     }
-
 
     private boolean inPlace(String nombreRecurso) {
         File archivo = new File(nombreRecurso);
