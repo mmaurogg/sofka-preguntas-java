@@ -1,0 +1,5 @@
+Juagador: q Puntaje: 5
+Juagador: 1 Puntaje: 0
+Juagador: dddd Puntaje: 0
+Juagador: 1 Puntaje: 0
+Juagador: 1 Puntaje: 5

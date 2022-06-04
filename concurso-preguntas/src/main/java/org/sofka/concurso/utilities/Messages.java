@@ -37,22 +37,10 @@ public class Messages {
      * Método para imprimir en consola mensaje de bienvenida
      */
     public void showStartOptions() {
-        logger.info("Digite una opción:\n1. jugar\n2. Ver ranking\n0. Salir");
+        logger.info("Digite una opción:\n1. Jugar\n2. Ver historial de juegos\n0. Salir");
     }
 
     /**
-     * Método para imprimir mensaje presione tecla para continuar
-     */
-    public void pressAnyKeyToContinue() {
-        logger.info("Presione cualquier tecla para continuar");
-        try {
-            System.in.read();
-        } catch (Exception exception) {
-            throw new MyException(exception.getMessage(), exception);
-        }
-    }
-
-        /**
      * Método para imprimir en consola error de mensaje mensaje
      */
     public void showIncorrectChoise() {
