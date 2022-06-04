@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 /** 
  * Por medio de esta clase se accede a todos los métodos de escaner de la app
- * @author Mauricio Gómez
+ * @author Mauricio Gómez - mmaurogg@gmail.com
+ * @author Óscar Farfán - oscarfarfan92@gmail.com
  * @version 1.0.0
 */
 public class MyScanner {

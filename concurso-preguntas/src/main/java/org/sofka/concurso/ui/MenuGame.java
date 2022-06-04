@@ -12,16 +12,33 @@ import org.sofka.concurso.domain.Game;
 import org.sofka.concurso.domain.Player;
 import org.sofka.concurso.domain.Question;
 
+/**
+ * Menu representa el menú de opciones del juego
+ *
+ * @author Mauricio Gómez - mmaurogg@gmail.com
+ * @author Óscar Farfán - oscarfarfan92@gmail.com
+ *
+ * @version 1.0.0.000 3-06-2022
+ */
 public class MenuGame {
 
     static Messages messages = Messages.getInstance();
     static MyScanner scanner = MyScanner.getInstance();
     static DataAccess dataAccess = DataAccess.getInstance();
 
+    /**
+     * Método para generar la instancia de la clase
+     * @return new MenuGame();
+     */
     public static MenuGame getInstance() {
         return new MenuGame();
     }
 
+    /**
+     * Muestra al jugador las preguntas y valida si la respuesta ingresada por el jugador es correcta
+     *
+     * @return devuelve verdadero o falso dependiendo si la respuesta ingresada por el jugador es correcta
+     */
     public Boolean createGame() {
 
         Boolean flag = true;
@@ -87,16 +104,35 @@ public class MenuGame {
 
     }
 
+    /**
+     * Solicita el nombre del jugador y crea el objeto jugador
+     *
+     * @return devuelve la instancia del jugador
+     */
     private Player createPlayer() {
         messages.showMessage("Ingrese su nombre: ");
         String username = scanner.getString();
         return new Player(username);
     }
 
+    /**
+     * Valida la respuesta del usuario
+     *
+     * @param response respuesta ingresada por el usuario
+     * @param correctAnswer respuesta coreecta de la pregunta
+     * @return devuelve verdadero si la respuesta es correcta y falso si es incorrecta
+     */
     private Boolean validateResponse(String response, String correctAnswer) {
         return response.equals(correctAnswer);
     }
 
+    /**
+     * Guarda el jugador y el puntaje en un archivo de texto llamado games.txt
+     *
+     * @param player jugador que se va a guardar
+     * @param game el juego actual
+     * @param score puntaje del jugador
+     */
     private void saveGame( Player player, Game game, Integer score) {
         player.setScore(score);
         game.setScore(score);
@@ -105,6 +141,11 @@ public class MenuGame {
     
     }
 
+    /**
+     * Retornma las preguntas del juego
+     *
+     * @return devuelve las preguntas del juego
+     */
     private static ArrayList<Question> getQuestions() {
 
         final int NUMBER_QUESTION = 5;
