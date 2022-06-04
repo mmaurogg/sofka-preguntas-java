@@ -2,39 +2,46 @@ package org.sofka.concurso.utilities;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.sofka.concurso.domain.Game;
 
-public class xxx {
+public class DataAccess {
 
-    static String NOMBRE_RECURSO = "games.txt";
+    public static DataAccess getInstance(){
+        return new DataAccess();
+    }
 
-    public static void agregarGame(Game game) {
-        boolean anexar = false;
+    static Messages messages = Messages.getInstance();
+
+    static String NAME_FILE = "games.txt";
+
+    public void setGame(Game game) {
+        boolean add = false;
         try {
-            anexar = existe(NOMBRE_RECURSO);
-            escribir(game, NOMBRE_RECURSO, anexar);
+            add = inPlace(NAME_FILE);
+            write(game, NAME_FILE, add);
         } catch (Exception ex) {
-            System.out.println(ex);
+            messages.showMessage(ex.getMessage());
         }
     }
 
 
-    public static boolean existe(String nombreRecurso) {
+    private static boolean inPlace(String nombreRecurso) {
         File archivo = new File(nombreRecurso);
         return archivo.exists();
     }
     
-    public static void escribir(Game game, String nombreRecurso, boolean anexar) {
+    private static void write(Game game, String nombreRecurso, boolean add) {
         File archivo = new File(nombreRecurso);
         try {
-            PrintWriter salida = new PrintWriter(new FileWriter(archivo, anexar));
+            PrintWriter salida = new PrintWriter(new FileWriter(archivo, add));
             salida.println(game);
             salida.close();
-            System.out.println("Se ha escrito información al archivo: " + game.getPlayer().getUsername()+ " ");
-        } catch (Exception ex) {
-            System.out.println("Excepción al escribir games: " + ex.getMessage());
+            messages.showMessage("Se ha escrito información al archivo: " + game.getPlayer().getUsername()+ " ");
+        } catch (IOException ex) {
+            messages.showMessage("Excepción al write games: " + ex.getMessage());
         }
     }
 }

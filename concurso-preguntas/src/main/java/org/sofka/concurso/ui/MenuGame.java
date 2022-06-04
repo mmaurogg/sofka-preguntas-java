@@ -15,6 +15,7 @@ public class MenuGame {
 
     static Messages messages = Messages.getInstance();
     static MyScanner scanner = MyScanner.getInstance();
+    static DataAccess dataAccess = DataAccess.getInstance();
 
     public static Boolean createGame(){
         
@@ -93,7 +94,7 @@ public class MenuGame {
     private static void saveGame(Player player, ArrayList<Question> questions, Integer score){
         Game game = new Game(player, questions, score);
 
-        DataAccess.agregarGame(game);
+        dataAccess.setGame(game);
     }
 
     static ArrayList<Question> getQuestions(){
