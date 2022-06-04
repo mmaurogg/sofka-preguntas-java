@@ -11,12 +11,25 @@ import org.sofka.concurso.domain.Game;
 import org.sofka.concurso.domain.Player;
 import org.sofka.concurso.domain.Question;
 
+/**
+ * Menu representa el menú de opciones del juego
+ *
+ * @author Mauricio Gómez - mmaurogg@gmail.com
+ * @author Óscar Farfán - oscarfarfan92@gmail.com
+ *
+ * @version 1.0.0.000 3-06-2022
+ */
 public class MenuGame {
 
     static Messages messages = Messages.getInstance();
     static MyScanner scanner = MyScanner.getInstance();
     static DataAccess dataAccess = DataAccess.getInstance();
 
+    /**
+     * Muestra al jugador las preguntas y valida si la respuesta ingresada por el jugador es correcta
+     *
+     * @return devuelve verdadero o falso dependiendo si la respuesta ingresada por el jugador es correcta
+     */
     public static Boolean createGame(){
         
         Boolean flag = true;
@@ -79,6 +92,11 @@ public class MenuGame {
 
     }
 
+    /**
+     * Solicita el nombre del jugador y crea el objeto jugador
+     *
+     * @return devuelve la instancia del jugador
+     */
     private static Player createPlayer(){
         messages.showMessage("Ingrese su nombre: ");
         String username = scanner.getString();
@@ -87,16 +105,35 @@ public class MenuGame {
 
     }
 
+    /**
+     * Valida la respuesta del usuario
+     *
+     * @param response respuesta ingresada por el usuario
+     * @param correctAnswer respuesta coreecta de la pregunta
+     * @return devuelve verdadero si la respuesta es correcta y falso si es incorrecta
+     */
     private static Boolean validateResponse(String response, String correctAnswer){
         return response.equals(correctAnswer); 
     }
 
+    /**
+     * Guarda el jugador y el puntaje en un archivo de texto llamado games.txt
+     *
+     * @param player jugador que se va a guardar
+     * @param questions preguntas del juego
+     * @param score puntaje del jugador
+     */
     private static void saveGame(Player player, ArrayList<Question> questions, Integer score){
         Game game = new Game(player, questions, score);
 
         dataAccess.setGame(game);
     }
 
+    /**
+     * Retornma las preguntas del juego
+     *
+     * @return devuelve las preguntas del juego
+     */
     static ArrayList<Question> getQuestions(){
 
         String ans[] = {"resp1","resp2","resp3"};
